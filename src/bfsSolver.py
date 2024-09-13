@@ -1,7 +1,5 @@
 from gamebuilder import get_children
-import time
 goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
-
 
 def BfsSolver(board):
   states = 0
@@ -19,7 +17,3 @@ def BfsSolver(board):
       continue
     visited.append(current)
     queue.extend(get_children(current))
-
-
-
-

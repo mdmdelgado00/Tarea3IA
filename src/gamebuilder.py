@@ -40,6 +40,3 @@ def get_zero(board):
       if board[i][j] == 0:
         return i, j
   return -1, -1
-
-
-  

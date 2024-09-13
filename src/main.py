@@ -20,7 +20,7 @@ def main():
     gameboard = build_gameboard()
   start_time = time.time()
   # Cambiar con cada solver
-  BfsSolver([[1, 0, 3], [4, 5, 6], [7, 8, 2]])
+  GreedySolver(gameboard)
   print("--- %s seconds ---" % (time.time() - start_time))  
 
 if __name__ == "__main__":
