@@ -5,6 +5,7 @@ from greedySolver import GreedySolver
 from bfsSolver import BfsSolver
 from bfsSolver import get_children
 import time
+import tracemalloc
 
 def is_solvable(numbers):
     inversions = 0
@@ -18,10 +19,20 @@ def main():
   gameboard = build_gameboard()
   while not is_solvable([item for sublist in gameboard for item in sublist]):
     gameboard = build_gameboard()
+
+  tracemalloc.start()
   start_time = time.time()
+
   # Cambiar con cada solver
   GreedySolver(gameboard)
-  print("--- %s seconds ---" % (time.time() - start_time))  
+
+  print("--- %s seconds ---" % (time.time() - start_time))
+
+  current, peak = tracemalloc.get_traced_memory()
+  tracemalloc.stop()
+
+  print(f"Current memory usage is {current / 10**6} MB")
+  print(f"Peak memory usage was {peak / 10**6} MB")
 
 if __name__ == "__main__":
   main()

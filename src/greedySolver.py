@@ -18,7 +18,7 @@ def manhattan_distance(board):
 def GreedySolver(board):
     states = 0
     priority_queue = []
-    visited = set()
+    visited = []
     
     # Guarda en una lista ordenada de menor a mayor, una tupla de la distancia de Manhattan y el tablero
     # Esto evita tener que reordenar la lista cada vez que se agrega un nuevo tablero
@@ -33,11 +33,11 @@ def GreedySolver(board):
             print("Goal found")
             return
         
-        if tuple(map(tuple, current)) in visited:
+        if current in visited:
             continue
         
-        visited.add(tuple(map(tuple, current)))
+        visited.append(current)
         
         for child in get_children(current):
-            if tuple(map(tuple, child)) not in visited:
+            if child not in visited:
                 heapq.heappush(priority_queue, (manhattan_distance(child), child))
