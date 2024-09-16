@@ -1,6 +1,5 @@
 from gamebuilder import get_children
 from collections import deque
-import time
 goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
 
 def BfsSolver(board):
@@ -26,7 +25,3 @@ def BfsSolver(board):
       if child_tuple not in visited:
         visited.add(child_tuple)
         queue.append(child)
-
-
-
-
