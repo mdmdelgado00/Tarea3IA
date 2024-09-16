@@ -19,33 +19,36 @@ def main():
   runs = 20
   time_sum = 0
   peak_memory_avg = 0
+
   for i in range(runs):
     gameboard = build_gameboard()
     while not is_solvable([item for sublist in gameboard for item in sublist]):
       gameboard = build_gameboard()
-    
-    tracemalloc.start()
-    start_time = time.time()
 
     print("Puzzle " + str(i+1) + ":")
     print()
     for row in gameboard:
       print(row)
 
+    tracemalloc.start()
+    start_time = time.time()
+
     # Cambiar con cada solver
-    BfsSolver(gameboard)
-    print ("--- Puzzle " + str(i+1) + " solved --- in + " + str(time.time() - start_time) + " seconds ---")
-    time_sum += time.time() - start_time
-    
+    GreedySolver(gameboard)
+
+    end_time = time.time() - start_time
     current, peak = tracemalloc.get_traced_memory()
     tracemalloc.stop()
+
+    print ("--- Puzzle " + str(i+1) + " solved --- in + " + str(end_time) + " seconds ---")
+    time_sum += end_time
     print(f"Current memory usage is {current / 10**6} MB")
     print(f"Peak memory usage was {peak / 10**6} MB")
     peak_memory_avg += peak / 10**6
 
-
-  print("Average time: " + str(time_sum/runs))
-  print("Average peak memory: " + str(peak_memory_avg/runs))
+  print()
+  print("Average time: " + str(time_sum/runs) + " seconds")
+  print("Average peak memory: " + str(peak_memory_avg/runs) + " MB")
 
 
 if __name__ == "__main__":
