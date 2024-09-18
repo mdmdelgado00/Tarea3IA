@@ -17,6 +17,7 @@ def BfsSolver(board):
     
     if current == goal:
       print("Goal found")
+      return
     
     for child in get_children(current):
       child_tuple = tuple(tuple(row) for row in child)

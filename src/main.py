@@ -34,7 +34,7 @@ def main():
     start_time = time.time()
 
     # Cambiar con cada solver
-    GreedySolver(gameboard)
+    BfsSolver(gameboard)
 
     end_time = time.time() - start_time
     current, peak = tracemalloc.get_traced_memory()
